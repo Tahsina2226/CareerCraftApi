@@ -12,20 +12,31 @@ model User {
   name      String
   email     String   @unique
   password  String
-  role      String   @default("user") // user or admin
+  role      String   @default("user") // "user" or "admin"
   blogs     Blog[]
-  resumes   Resume[]
   createdAt DateTime @default(now())
 }
 
 model Blog {
-  id        String   @id @default(uuid())
-  title     String
-  content   String
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid())
+  title       String
+  content     String
+  slug        String   @unique
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  liveLink    String?
+  repoLink    String?
+  thumbnail   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Resume {
