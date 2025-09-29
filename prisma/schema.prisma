@@ -8,38 +8,38 @@ generator client {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
-  email     String   @unique
+  email     String    @unique
   password  String
-  role      String   @default("user")
+  role      String    @default("user") // admin / user
   blogs     Blog[]
   projects  Project[]
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 }
 
 model Blog {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   title     String
-  slug      String   @unique
+  slug      String    @unique
   content   String
   excerpt   String?
   coverUrl  String?
-  published Boolean  @default(false)
+  published Boolean   @default(false)
   authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  author    User      @relation(fields: [authorId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Project {
-  id        String   @id @default(uuid())
-  title     String
+  id          String    @id @default(uuid())
+  title       String
   description String
-  liveUrl   String?
-  repoUrl   String?
-  thumbnail String?
-  ownerId   String
-  owner     User     @relation(fields: [ownerId], references: [id])
-  createdAt DateTime @default(now())
+  liveUrl     String?
+  repoUrl     String?
+  thumbnail   String?
+  ownerId     String
+  owner       User      @relation(fields: [ownerId], references: [id])
+  createdAt   DateTime  @default(now())
 }

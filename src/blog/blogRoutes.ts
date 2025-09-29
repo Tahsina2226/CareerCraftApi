@@ -1,18 +1,21 @@
 import { Router } from "express";
 import {
   getBlogs,
-  getBlog,
+  getBlogBySlug,
   createBlog,
   updateBlog,
   deleteBlog,
 } from "./blogController";
-import { protect } from "../middlewares/authMiddleware";
+import { protect, adminOnly } from "../middlewares/authMiddleware";
 
 const router = Router();
+
+
 router.get("/", getBlogs);
-router.get("/:id", getBlog);
-router.post("/", protect, createBlog);
-router.put("/:id", protect, updateBlog);
-router.delete("/:id", protect, deleteBlog);
+router.get("/slug/:slug", getBlogBySlug);
+
+router.post("/", protect, adminOnly, createBlog);
+router.put("/:id", protect, adminOnly, updateBlog);
+router.delete("/:id", protect, adminOnly, deleteBlog);
 
 export default router;
