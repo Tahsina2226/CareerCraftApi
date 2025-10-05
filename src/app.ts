@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./Auth/authRoutes";
 import blogRoutes from "./blog/blogRoutes";
-import projectRoutes from "./projects/projectRoutes";
+import projectRoutes from "./Projects/projectRoutes";
 import dashboardRoutes from "./dashboard/dashboardRoutes"; 
 import { protect, adminOnly } from "./middlewares/authMiddleware";
 
