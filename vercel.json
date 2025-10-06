@@ -1,9 +1,21 @@
 {
   "version": 2,
   "builds": [
-    { "src": "src/server.ts", "use": "@vercel/node" }
+    {
+      "src": "src/server.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "prisma/schema.prisma"
+        ]
+      }
+    }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "src/server.ts" }
-  ]
+    {
+      "src": "/(.*)",
+      "dest": "src/server.ts"
+    }
+  ],
+  "buildCommand": "npx prisma generate && tsc"
 }
